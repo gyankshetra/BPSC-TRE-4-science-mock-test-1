@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BPSC TRE 4 Science Mock Test 1 - Vidyut Dhara Ke Chumbakiya Prabhav</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui}
+body{background:#f1f5f1}.app{max-width:430px;margin:auto;background:#f5f7f5;min-height:100vh;position:relative}
+.top{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border-bottom:1px solid #e5e7eb}
+.card{margin:10px 16px;background:#fff;border:2.5px solid #1d6a38;border-radius:22px;padding:20px 12px;text-align:center}
+.card h1{font-size:18px;color:#0b3d1d;font-weight:900}.sub{font-size:12px;color:#555;font-weight:600;margin-top:4px}
+.badge{display:inline-flex;background:#e8f6eb;border:1.5px solid #4caf6e;color:#0b5a24;font-size:11px;font-weight:800;padding:6px 14px;border-radius:20px;margin-top:10px}
+.boxes{display:flex;gap:10px;margin-top:18px}.box{flex:1;background:#d8eedc;border:1.6px solid #4a8a5e;border-radius:14px;padding:12px 6px}.box p{font-size:11px;font-weight:800;color:#0b3d1d;margin-top:6px}
+.instr{margin:16px;background:#fff;border-radius:16px;padding:16px}.instr li{margin-left:16px;font-size:12.5px;margin-top:9px;list-style:disc}
+.btn{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:402px;background:#16a34a;color:#fff;border:none;padding:18px;border-radius:16px;font-weight:900;font-size:15px;cursor:pointer}
+#page2,#page3{display:none}
+.gHead{background:#16a34a;color:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.timer{font-weight:900;background:#fff;color:#166534;padding:4px 10px;border-radius:20px;font-size:12px}
+.qArea{padding:12px 14px 110px}.qCard{background:#fff;border-radius:14px;padding:14px;border:1px solid #e5e7eb}
+.qt{font-weight:800;font-size:14px;line-height:1.5;color:#111}
+.opt{border:1.7px solid #e5e7eb;border-radius:12px;padding:12px;margin:9px 0;background:#fff;cursor:pointer;font-size:13px;display:flex;gap:8px}.opt.sel{background:#0f5d2f;color:#fff;border-color:#0f5d2f}
+.btm{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;padding:10px;display:flex;gap:10px;border-top:1px solid #e5e7eb}
+.btm button{flex:1;padding:12px;border-radius:12px;font-weight:800;border:1px solid #ddd;background:#fff}
+.grid{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.dot{width:32px;height:32px;border-radius:8px;border:1.5px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;background:#fff;cursor:pointer}.dot.attempt{background:#0f5d2f;color:#fff}.dot.current{border-color:#16a34a;border-width:2px}
+.completed{margin:14px;background:linear-gradient(135deg,#0d6b28,#16a34a);border-radius:18px;padding:20px;color:#fff}.marks{font-size:26px;font-weight:900;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="app">
+<div id="page1">
+<div class="top"><span>←</span><b>START TEST</b></div>
+<div class="card"><h1>BPSC TRE 4 SCIENCE<br>MOCK TEST 1</h1><div class="sub">विषय: विज्ञान | अध्याय: विद्युत धारा के चुंबकीय प्रभाव</div><div class="badge">📚 BPSC TRE 1,2,3 PYQ Pattern • 40 Q</div><div class="boxes"><div class="box">📄<p>40 Questions</p></div><div class="box">🕒<p>40 Minutes</p></div><div class="box">⚠️<p>1/3 Negative</p></div></div></div>
+<div class="instr"><b>ⓘ निर्देश (TRE 4.0):</b><li>कुल 40 प्रश्न</li><li>(A)(B)(C) सही में से चुनें</li><li>(D) = उपर्युक्त में से एक से अधिक / कोई नहीं</li><li>(E) = प्रयास नहीं किया गया - No Negative</li><li>गलत पर 1/3 कटेगा</li><li>Moderate to Hard - TRE PYQ Based</li></div>
+<button class="btn" onclick="startTest()">START TEST</button>
+</div>
+<div id="page2">
+<div class="gHead"><b>BPSC TRE 4 • विज्ञान</b><div><span id="qc">Q1/40</span> <span id="timer" class="timer">40:00</span></div></div>
+<div class="qArea"><div class="grid" id="grid"></div><div class="qCard"><div id="qt" class="qt"></div><div id="op"></div></div></div>
+<div class="btm"><button onclick="prevQ()">← Prev</button><button onclick="clearAns()">Clear</button><button onclick="nextQ()" style="background:#16a34a;color:#fff;border:none">Next →</button></div>
+</div>
+<div id="page3" style="background:#0a2a12;min-height:100vh">
+<div style="background:#fff;padding:12px"><b>Result • Mock 1 • विद्युत धारा</b></div>
+<div class="completed"><b>Completed!</b><div class="marks" id="fMarks">0 / 40</div><div id="fBreak" style="font-size:12px;margin-top:6px"></div></div>
+<div style="margin:12px;background:#fff;border-radius:12px;padding:12px;display:flex;justify-content:space-between"><span>Correct: <b id="c1">0</b></span><span>Wrong: <b id="w1">0</b></span><span>Skip: <b id="s1">0</b></span></div>
+<div id="analysis" style="margin:12px;padding-bottom:80px"></div>
+<button onclick="location.reload()" style="margin:12px;width:calc(100% - 24px);padding:14px;border-radius:12px;background:#0f5d2f;color:#fff;border:none;font-weight:900;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);max-width:402px">BACK TO HOME</button>
+</div>
+</div>
+<script>
+const Qs=[
+{q:"चुंबकीय क्षेत्र की खोज किसने की कि विद्युत धारा चुंबकीय क्षेत्र उत्पन्न करती है?",o:["ओर्स्टेड","फैराडे","एम्पीयर","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"1820 में ओर्स्टेड ने खोजा।"},
+{q:"सीधे धारावाही चालक के चारों ओर क्षेत्र रेखाएँ?",o:["सीधी","संकेंद्रीय वृत्त","वर्गाकार","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"संकेंद्रीय वृत्त।"},
+{q:"दाएँ हाथ के अँगूठे का नियम?",o:["धारा से क्षेत्र की दिशा","बल की दिशा","प्रेरित धारा","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"अँगूठा धारा, उंगलियाँ क्षेत्र।"},
+{q:"चुंबकीय क्षेत्र का SI मात्रक?",o:["टेस्ला","वेबर","हेनरी","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"टेस्ला।"},
+{q:"वृत्ताकार लूप के केंद्र पर B ∝?",o:["1/I","I","r","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"B=μ0I/2r"},
+{q:"परिनालिका के अंदर क्षेत्र?",o:["एकसमान समांतर","असमान","शून्य","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"एकसमान।"},
+{q:"फ्लेमिंग वाम हस्त में अँगूठा?",o:["क्षेत्र","धारा","बल/गति","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:2,e:"तर्जनी=Field, मध्यमा=Current, अँगूठा=Motion"},
+{q:"मोटर किस सिद्धांत पर?",o:["धारा का चुंबकीय प्रभाव","प्रेरण","लेन्ज","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"धारावाही चालक पर बल।"},
+{q:"Split Ring का कार्य?",o:["धारा उलटना","धारा बढ़ाना","क्षेत्र बढ़ाना","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"हर आधे घूर्णन पर दिशा बदलता है।"},
+{q:"50Hz AC में दिशा परिवर्तन?",o:["50","100","25","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"100 बार।"},
+{q:"दक्षिण हस्त नियम?",o:["मोटर","जनित्र","दोनों","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Generator।"},
+{q:"छड़ चुंबक के बाहर क्षेत्र रेखा?",o:["N से S","S से N","दोनों","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"बाहर N→S"},
+{q:"विद्युत चुंबकीय प्रेरण खोज?",o:["ओर्स्टेड","फैराडे","एम्पीयर","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"फैराडे 1831"},
+{q:"लेन्ज नियम आधारित?",o:["आवेश","ऊर्जा","संवेग","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"ऊर्जा संरक्षण।"},
+{q:"फ्यूज सिद्धांत?",o:["चुंबकीय","तापीय","रासायनिक","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Heating effect"},
+{q:"प्रोटॉन लंबवत प्रवेश, बल?",o:["शून्य","अधिकतम","न्यूनतम","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"F=qvB max"},
+{q:"समान दिशा धारा वाले तार?",o:["आकर्षित","प्रतिकर्षित","कोई बल नहीं","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"आकर्षण"},
+{q:"ट्रांसफार्मर सिद्धांत?",o:["स्व-प्रेरण","अन्योन्य प्रेरण","चुंबकीय प्रभाव","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Mutual Induction"},
+{q:"AC जनित्र EMF?",o:["BIL","BANω sinωt","IBL","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"e=NBAω sinωt"},
+{q:"फ्लक्स मात्रक?",o:["टेस्ला","वेबर","वोल्ट","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Weber"},
+{q:"फेरों संख्या बढ़ाने पर B?",o:["बढ़ेगा","घटेगा","समान","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"B=μ0nI"},
+{q:"लोहे का बुरादा?",o:["विद्युत क्षेत्र","चुंबकीय रेखाएँ","धारा दिशा","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Field lines"},
+{q:"आर्मेचर?",o:["स्थायी चुंबक","घूमने वाली कुंडली","वलय","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"घूमने वाली कुंडली"},
+{q:"Live-Neutral विभव?",o:["220V","110V","440V","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"220V"},
+{q:"MCB बेहतर क्यों?",o:["रीसेट होता है","सस्ता","गर्म","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"रीसेट"},
+{q:"चुंबकीय याम्योत्तर?",o:["भौगोलिक","चुंबकीय उत्तर-दक्षिण तल","दोनों","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"चुंबकीय तल"},
+{q:"5A,10cm पर B?",o:["10^-5 T","10^-6 T","10^-4 T","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"B=μ0I/2πr=10^-5T"},
+{q:"क्षेत्र रेखाएँ क्यों नहीं काटतीं?",o:["दो दिशा असंभव","काटती हैं","ऊर्जा","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"दो दिशा असंभव"},
+{q:"विद्युत चुंबक पदार्थ?",o:["इस्पात","नर्म लोहा","तांबा","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"नर्म लोहा"},
+{q:"M =?",o:["NIA","BIL","I/R","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"NIA"},
+{q:"DC मोटर गति बढ़ाने?",o:["धारा बढ़ा","फेरे बढ़ा","क्षेत्र बढ़ा","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:3,e:"सभी से, अतः D = एक से अधिक सही।"},
+{q:"प्रेरित धारा दिशा?",o:["वाम हस्त","दक्षिण हस्त","अँगूठा","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Right Hand"},
+{q:"e=-dφ/dt में minus?",o:["लेन्ज","फैराडे","ओम","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"लेन्ज - विरोध"},
+{q:"अर्थिंग उद्देश्य?",o:["बिजली बचाना","सुरक्षा","वोल्टेज बढ़ाना","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"झटके से बचाव"},
+{q:"1000W 220V R?",o:["48.4 Ω","22 Ω","100 Ω","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"R=V²/P=48.4"},
+{q:"समान KE में r?",o:["हल्के की अधिक","भारी की अधिक","समान","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"r∝√m"},
+{q:"परिनालिका में लोहा?",o:["बढ़ेगा","घटेगा","शून्य","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"बहुत बढ़ेगा"},
+{q:"AC→DC?",o:["इन्वर्टर","रेक्टिफायर","ट्रांसफार्मर","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:1,e:"Rectifier"},
+{q:"चुंबकीय बल पर कार्य?",o:["शून्य","qVB","qV","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"बल लंबवत, कार्य शून्य"},
+{q:"बल्ब गैस?",o:["Ar+N2","O2","H2","उपर्युक्त में से एक से अधिक / उपर्युक्त में से कोई नहीं","प्रयास नहीं किया गया"],a:0,e:"Ar+N2"},
+];
+let cur=0, ans=Array(Qs.length).fill(null), time=40*60, timerInt=null;
+function startTest(){page1.style.display='none';page2.style.display='block';renderGrid();render();startTimer();}
+function renderGrid(){let h="";Qs.forEach((_,i)=>{h+=`<div class="dot ${ans[i]!==null?'attempt':''} ${i==cur?'current':''}" onclick="jump(${i})">${i+1}</div>`});grid.innerHTML=h;}
+function render(){qc.innerText=`Q${cur+1}/${Qs.length}`;qt.innerText=`Q${cur+1}. ${Qs[cur].q}`;let h="";Qs[cur].o.forEach((t,i)=>{h+=`<div class="opt ${ans[cur]==i?'sel':''}" onclick="pick(${i})"><b>${String.fromCharCode(65+i)}.</b> ${t}</div>`});op.innerHTML=h;renderGrid();}
+function pick(i){ans[cur]=i; if(cur<Qs.length-1){cur++;render();}else{render();}}
+function nextQ(){if(cur<Qs.length-1){cur++;render();}else{result();}}
+function prevQ(){if(cur>0){cur--;render();}}
+function jump(i){cur=i;render();}
+function clearAns(){ans[cur]=null;render();}
+function startTimer(){timerInt=setInterval(()=>{time--;let m=Math.floor(time/60),s=time%60;timer.innerText=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;if(time<=0){clearInterval(timerInt);result();}},1000);}
+function result(){clearInterval(timerInt);let c=0,w=0,s=0;ans.forEach((a,i)=>{if(a===null||a===4)s++;else if(a===Qs[i].a)c++;else w++;});let total=c - w*(1/3);total=Math.max(0,Number(total.toFixed(2)));page2.style.display='none';page3.style.display='block';fMarks.innerText=`${total} / 40 Marks`;fBreak.innerText=`${c} सही ×1=${c} | ${w} गलत ×0.33=-${(w/3).toFixed(2)} | Skip=${s} | Final=${total}`;c1.innerText=c;w1.innerText=w;s1.innerText=s;let html="";Qs.forEach((q,i)=>{let user=ans[i]!==null?q.o[ans[i]]:"Not Attempted";let ok=ans[i]===q.a;let status=ans[i]===null||ans[i]===4?"⏭️ Skip":ok?"✅ +1":"❌ -0.33";html+=`<div style="background:#fff;border-radius:12px;padding:12px;margin:8px 0;border-left:4px solid ${ok?'#16a34a':ans[i]===null||ans[i]===4?'#9ca3af':'#dc2626'}"><div style="display:flex;justify-content:space-between"><span style="background:#0f5d2f;color:#fff;font-size:10px;padding:3px 6px;border-radius:4px">Q${i+1}</span><span style="font-size:11px;font-weight:800">${status}</span></div><div style="font-weight:700;margin-top:6px;font-size:13px">${q.q}</div><div style="font-size:12px;color:#b91c1c;margin-top:6px">Your: ${user}</div><div style="font-size:12px;color:#0f6d3a;font-weight:700">Correct: ${q.o[q.a]}</div><div style="background:#fef3c7;border-radius:8px;padding:8px;margin-top:6px;font-size:11px">💡 ${q.e}</div></div>`});analysis.innerHTML=html;window.scrollTo(0,0);}
+</script>
+</body>
+</html>
